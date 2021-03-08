@@ -3,13 +3,13 @@ class Tables {
         this.conexao = conexao;
         console.log('Tabelas chamadas');
 
-        this.criarUsuario();
-        this.criarNota();
-        this.criarTag();
-        this.criarCheckList();
+        this.criaUsuario();
+        this.criaNota();
+        this.criaTag();
+        this.criaCheckList();
     };
 
-    criarUsuario() {
+    criaUsuario() {
 
         const sql = 'CREATE TABLE IF NOT EXISTS USUARIO (ID_USUARIO BIGSERIAL NOT NULL PRIMARY KEY, DS_NOME VARCHAR(200) NOT NULL, DS_EMAIL VARCHAR(200) NOT NULL, DS_SENHA VARCHAR(300) NOT NULL, AVATAR TEXT)'
 
@@ -22,7 +22,7 @@ class Tables {
         });
     };
 
-    criarNota() {
+    criaNota() {
 
         const sql = 'CREATE TABLE IF NOT EXISTS NOTA (ID_NOTA BIGSERIAL NOT NULL PRIMARY KEY, ID_USUARIO INT NOT NULL, DS_TITULO VARCHAR(100), DS_DESCRICAO TEXT, DH_CRIADO DATE NOT NULL, DH_ATUALIZADO DATE, FOREIGN KEY(ID_USUARIO) REFERENCES USUARIO (ID_USUARIO))';
         this.conexao.query(sql, (erro) => {
@@ -34,7 +34,7 @@ class Tables {
         });
     };
 
-    criarTag() {
+    criaTag() {
 
         const sql = 'CREATE TABLE IF NOT EXISTS TAG (ID_TAG BIGSERIAL NOT NULL PRIMARY KEY, ID_NOTA INT NOT NULL, DS_NOME VARCHAR(50) NOT NULL, FOREIGN KEY(ID_NOTA) REFERENCES NOTA (ID_NOTA))';
         this.conexao.query(sql, (erro) => {
@@ -46,7 +46,7 @@ class Tables {
         });
     };
 
-    criarCheckList() {
+    criaCheckList() {
 
         const sql = 'CREATE TABLE IF NOT EXISTS CHECKLIST (ID_CHECKLIST BIGSERIAL NOT NULL PRIMARY KEY, ID_NOTA INT NOT NULL, DS_DESCRICAO TEXT NOT NULL, TP_CONCLUIDA BIT NOT NULL, FOREIGN KEY(ID_NOTA) REFERENCES NOTA (ID_NOTA))';
         this.conexao.query(sql, (erro) => {
