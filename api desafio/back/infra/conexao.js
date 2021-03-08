@@ -4,7 +4,7 @@ const conexao = new pg.Pool({
     host: 'localhost',
     port: '5432',
     user: 'postgres',
-    password:'71XDZV',
+    password:'1b71c37',
     database: 'api-node'
 });
 
